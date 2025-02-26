@@ -40,9 +40,36 @@ class AuthController extends Controller
 
         return response()->json([
             'token' => $token,
-            'message'=>'lorem ipsum dolor sit success 🔥',
+            'message' => 'lorem ipsum dolor sit success 🔥',
             'user' => $user,
         ]);
 
+    }
+
+    function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required'
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return response()->json([
+            'message' => 'success register',
+        ]);
+    }
+
+    function logout(Request $request) {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'message' => 'success logout'
+        ]);
     }
 }
