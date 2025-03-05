@@ -68,9 +68,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       const SizedBox(height: 86),
-                      AppButton(title: 'Login', onPressed: () {}),
+                      AppButton(
+                        title: 'Login',
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'main');
+                        },
+                      ),
                       SizedBox(height: 128),
-                      Center(child: Image.asset(AssetsConst.poltekLogo, height: 80)),
+                      Center(
+                        child: Image.asset(AssetsConst.poltekLogo, height: 80),
+                      ),
                       const SizedBox(height: 20),
                     ],
                   ),

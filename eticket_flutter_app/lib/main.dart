@@ -1,5 +1,6 @@
 import 'package:eticket_flutter_app/ui/auth/login_screen.dart';
 import 'package:eticket_flutter_app/ui/auth/splash_screen.dart';
+import 'package:eticket_flutter_app/ui/home/main_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => SplashScreen(),
         'login': (context) => LoginScreen(),
+        'main': (context) => MainScreen(),
       },
     );
   }
