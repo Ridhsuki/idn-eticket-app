@@ -23,6 +23,8 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         showUnselectedLabels: true,
+        selectedFontSize: 12,
+        selectedLabelStyle: TextStyle(fontWeight: FontWeight.w500),
         selectedItemColor: AppColor.mainColor,
         unselectedItemColor: AppColor.grey,
         currentIndex: currentPage,
@@ -43,7 +45,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
           BottomNavigationBarItem(
             icon: Image.asset(AssetsConst.scanIcon),
-            label: ''
+            label: '',
           ),
           BottomNavigationBarItem(
             activeIcon: Image.asset(AssetsConst.activeHistoryIcon),

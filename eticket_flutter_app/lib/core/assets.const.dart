@@ -1,9 +1,11 @@
 class AssetsConst {
+  //? Intro 
   // Images
   static const String whiteLogo = 'assets/images/WhiteLogo.png';
   static const String blueLogo = 'assets/images/BlueLogo.png';
   static const String poltekLogo = 'assets/images/logoPoltek.png';
 
+//? Bottom NavBar
   // Icons
   static const String homeIcon = 'assets/icons/home.png';
   static const String ticketIcon = 'assets/icons/ticket.svg';
@@ -16,4 +18,9 @@ class AssetsConst {
   static const String activeTicketIcon = 'assets/icons/ticketActive.png';
   static const String activeHistoryIcon = 'assets/icons/historyActive.png';
   static const String activeSettingIcon = 'assets/icons/settingActive.png';
+
+  //? Home
+  static const String plusIcon = 'assets/icons/plus.png';
+  static const String minusIcon = 'assets/icons/minus.png';
+
 }
