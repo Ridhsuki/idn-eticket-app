@@ -52,16 +52,76 @@ class HomeScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
-        child: AppCard(),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: AppCard(), // Card Produk Tiket
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              color: Color(0xffffffff),
+              width: double.infinity,
+              height: 90,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Order Summary',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xff031222),
+                        ),
+                      ),
+                      Text(
+                        'Rp.140.000',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff031222),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 28, bottom: 15),
+                    width: 143,
+                    height: 48,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColor.mainColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                        )
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        'Process',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
+// Card Widget
 class AppCard extends StatelessWidget {
-  const AppCard({super.key, });
+  const AppCard({super.key});
 
   @override
   Widget build(BuildContext context) {
