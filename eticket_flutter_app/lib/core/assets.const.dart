@@ -9,6 +9,7 @@ class AssetsConst {
   static const String ticketIcon = 'assets/icons/ticket.svg';
   static const String historyIcon = 'assets/icons/history.svg';
   static const String settingIcon = 'assets/icons/setting.svg';
+  static const String scanIcon = 'assets/icons/scan.png';
 
   // Active Icon
   static const String activeHomeIcon = 'assets/icons/homeActive.png';

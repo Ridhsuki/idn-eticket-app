@@ -21,6 +21,8 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: screen[currentPage],
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        showUnselectedLabels: true,
         selectedItemColor: AppColor.mainColor,
         unselectedItemColor: AppColor.grey,
         currentIndex: currentPage,
@@ -40,6 +42,10 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Ticket',
           ),
           BottomNavigationBarItem(
+            icon: Image.asset(AssetsConst.scanIcon),
+            label: ''
+          ),
+          BottomNavigationBarItem(
             activeIcon: Image.asset(AssetsConst.activeHistoryIcon),
             icon: SvgPicture.asset(AssetsConst.historyIcon),
             label: 'History',
@@ -56,6 +62,7 @@ class _MainScreenState extends State<MainScreen> {
 
   List screen = [
     HomeScreen(),
+    TicketScreen(),
     TicketScreen(),
     HistoryScreen(),
     SettingScreen(),
