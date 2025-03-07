@@ -1,5 +1,6 @@
 import 'package:eticket_flutter_app/core/app_color.dart';
 import 'package:flutter/material.dart';
+
 class AppButton extends StatelessWidget {
   const AppButton({super.key, required this.title, required this.onPressed});
 
@@ -10,7 +11,6 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50,
-      width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(backgroundColor: AppColor.mainColor),
         onPressed: onPressed,

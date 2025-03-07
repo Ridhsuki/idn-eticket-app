@@ -68,11 +68,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       const SizedBox(height: 86),
-                      AppButton(
-                        title: 'Login',
-                        onPressed: () {
-                          Navigator.pushNamed(context, 'main');
-                        },
+                      SizedBox(
+                        width: double.infinity,
+                        child: AppButton(
+                          title: 'Login',
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context, 'main');
+                          },
+                        ),
                       ),
                       SizedBox(height: 128),
                       Center(
