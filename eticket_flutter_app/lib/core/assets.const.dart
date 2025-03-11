@@ -1,11 +1,11 @@
 class AssetsConst {
-  //? Intro 
+  //? Intro
   // Images
   static const String whiteLogo = 'assets/images/WhiteLogo.png';
   static const String blueLogo = 'assets/images/BlueLogo.png';
   static const String poltekLogo = 'assets/images/logoPoltek.png';
 
-//? Bottom NavBar
+  //? Bottom NavBar
   // Icons
   static const String homeIcon = 'assets/icons/home.png';
   static const String ticketIcon = 'assets/icons/ticket.svg';
@@ -23,4 +23,14 @@ class AssetsConst {
   static const String plusIcon = 'assets/icons/plus.png';
   static const String minusIcon = 'assets/icons/minus.png';
 
+  //? Detail Order
+  // blue (not active)
+  static const String qrisIcon = 'assets/icons/detailOrder/qris.png';
+  static const String tunaiIcon = 'assets/icons/detailOrder/tunai.png';
+  static const String transferIcon = 'assets/icons/detailOrder/transfer.png';
+
+  // white (active)
+  static const String activeQrisIcon = 'assets/icons/detailOrder/qris-1.png';
+  static const String activeTunaiIcon = 'assets/icons/detailOrder/tunai-1.png';
+  static const String activeTransferIcon = 'assets/icons/detailOrder/transfer-1.png';
 }

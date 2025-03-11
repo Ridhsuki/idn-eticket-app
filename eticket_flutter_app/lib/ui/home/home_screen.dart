@@ -31,8 +31,6 @@ class HomeScreen extends StatelessWidget {
     ),
   ];
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,7 +103,12 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    AppButton(title: 'Process', onPressed: () {}),
+                    AppButton(
+                      title: 'Process',
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'detail-order');
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -117,6 +120,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class ItemCardHome extends StatefulWidget {
   ItemCardHome({
     super.key,
