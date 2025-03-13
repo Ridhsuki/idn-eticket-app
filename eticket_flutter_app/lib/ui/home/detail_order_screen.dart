@@ -5,21 +5,13 @@ import 'package:eticket_flutter_app/data/model/ticket_model.dart';
 import 'package:flutter/material.dart';
 
 class DetailOrderScreen extends StatelessWidget {
-  DetailOrderScreen({super.key});
-
-  final List<TicketModel> orderDetailDummmy = [
-    TicketModel(
-      title: 'Tiket Masuk Dewasa',
-      subtitle: 'Nusantara',
-      price: 50000,
-    ),
-    TicketModel(title: 'Tiket Masuk Anak', subtitle: 'Nusantara', price: 20000),
-  ];
+  const DetailOrderScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // final argument =
-    //     ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final argument =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final List<TicketModel> selectedTickets = argument['selectedTickets'];
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -46,22 +38,62 @@ class DetailOrderScreen extends StatelessWidget {
           children: [
             ListView.separated(
               shrinkWrap: true,
-              itemCount: orderDetailDummmy.length,
+              itemCount: selectedTickets.length,
               separatorBuilder: (context, index) {
                 return SizedBox(height: 20);
               },
               itemBuilder: (context, index) {
-                var data = orderDetailDummmy[index];
+                var data = selectedTickets[index];
                 return Padding(
                   padding: EdgeInsets.only(
-                    bottom: index == orderDetailDummmy.length - 1 ? 100 : 0,
+                    bottom: index == selectedTickets.length - 1 ? 100 : 0,
                   ),
-                  child: ItemCardOrderDetail(
-                    title: data.title,
-                    subtitle: data.subtitle,
-                    price: data.price,
-                    count: data.count,
-                    totalPrice: data.totalPrice,
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: AppColor.grey),
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 24,
+                        horizontal: 25,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(data.title, style: TextStyle(fontSize: 15)),
+                          Text(
+                            data.subtitle,
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: AppColor.greytext,
+                            ),
+                          ),
+                          SizedBox(height: 13),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Rp ${data.price} x ${data.count}',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                'Rp ${data.totalPrice = data.price * data.count}',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 );
               },
@@ -91,7 +123,7 @@ class DetailOrderScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Rp. 999999999++',
+                              'Rp. ${argument['totalAmount']}',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -244,67 +276,6 @@ class _PaymentMethodButtonState extends State<PaymentMethodButton> {
           ),
         ),
       ],
-    );
-  }
-}
-
-// ignore: must_be_immutable // Detail Order Card
-class ItemCardOrderDetail extends StatefulWidget {
-  ItemCardOrderDetail({
-    super.key,
-    required this.title,
-    required this.subtitle,
-    required this.price,
-    required this.count,
-    required this.totalPrice,
-  });
-  final String title;
-  final String subtitle;
-  final int price;
-  int count;
-  int totalPrice;
-
-  @override
-  State<ItemCardOrderDetail> createState() => _ItemCardOrderDetailState();
-}
-
-class _ItemCardOrderDetailState extends State<ItemCardOrderDetail> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: AppColor.grey),
-        borderRadius: BorderRadius.all(Radius.circular(16)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 25),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(widget.title, style: TextStyle(fontSize: 15)),
-            Text(
-              widget.subtitle,
-              style: TextStyle(fontSize: 11, color: AppColor.greytext),
-            ),
-            SizedBox(height: 13),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Rp ${widget.price} x 2',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'Rp ${widget.totalPrice = widget.price * widget.count}',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

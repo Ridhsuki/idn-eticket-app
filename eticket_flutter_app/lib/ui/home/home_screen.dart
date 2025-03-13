@@ -29,10 +29,11 @@ class _HomeScreenState extends State<HomeScreen> {
       subtitle: 'Mancanegara',
       price: 120000,
     ),
+    TicketModel(title: 'Tiket Keluarga', subtitle: 'Nusantara', price: 175000),
     TicketModel(
       title: 'Tiket Keluarga',
       subtitle: 'Mancanegara',
-      price: 200000,
+      price: 300000,
     ),
   ];
 
@@ -206,7 +207,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     AppButton(
                       title: 'Process',
                       onPressed: () {
-                        Navigator.pushNamed(context, 'detail-order');
+                        Navigator.pushNamed(
+                          context,
+                          'detail-order',
+                          arguments: {
+                            'selectedTickets':
+                                ticketDummmy
+                                    .where((ticket) => ticket.count > 0)
+                                    .toList(),
+                            'totalAmount': totalAmount,
+                          },
+                        );
                       },
                     ),
                   ],
