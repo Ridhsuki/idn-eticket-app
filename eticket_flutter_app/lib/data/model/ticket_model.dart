@@ -9,5 +9,7 @@ class TicketModel {
     required this.title,
     required this.subtitle,
     required this.price,
+    this.count = 0,
+    this.totalPrice = 0,
   });
 }

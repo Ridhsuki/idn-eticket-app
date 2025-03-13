@@ -18,19 +18,25 @@ class DetailOrderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final argument =
+    //     ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        // leading: IconButton(
-        //   onPressed: () {
-        //     Navigator.pop(context);
-        //   },
-        //   icon: Icon(Icons.arrow_back_rounded, color: AppColor.mainColor),
-        // ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Image.asset('assets/icons/backBlue.png'),
+        ),
         title: Text(
           'Detail Pesanan',
-          style: TextStyle(color: AppColor.mainColor, fontSize: 16),
+          style: TextStyle(
+            color: AppColor.mainColor,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         centerTitle: true,
       ),
@@ -218,12 +224,17 @@ class _PaymentMethodButtonState extends State<PaymentMethodButton> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(_selectedIndex == 2 ? AssetsConst.activeTransferIcon : AssetsConst.transferIcon),
+                Image.asset(
+                  _selectedIndex == 2
+                      ? AssetsConst.activeTransferIcon
+                      : AssetsConst.transferIcon,
+                ),
                 SizedBox(height: 10),
                 Text(
                   'Transfer',
                   style: TextStyle(
-                    color: _selectedIndex == 2 ? Colors.white : AppColor.mainColor,
+                    color:
+                        _selectedIndex == 2 ? Colors.white : AppColor.mainColor,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),

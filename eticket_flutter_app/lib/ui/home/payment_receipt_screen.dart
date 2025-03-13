@@ -12,10 +12,17 @@ class PaymentReceiptScreen extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: Image.asset('assets/icons/backWhite.png'),
         ),
         backgroundColor: AppColor.mainColor,
-        title: Text('Payment Receipt', style: TextStyle(color: Colors.white)),
+        title: Text(
+          'Payment Receipt',
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Stack(
@@ -49,16 +56,19 @@ class PaymentReceiptScreen extends StatelessWidget {
                     'payment receipt'.toUpperCase(),
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 17,),
+                  SizedBox(height: 17),
                   Image.asset('assets/images/QRCode.png'),
-                  SizedBox(height: 17,),
-                  Text('Scan this QR code to verify tickets'),
+                  SizedBox(height: 17),
+                  Text(
+                    'Scan this QR code to verify tickets',
+                    style: TextStyle(fontSize: 15), textAlign: TextAlign.center,
+                  ),
                   SizedBox(height: 21),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [Text('Tagihan'), Text('Rp. 120.000')],
                   ),
-                  SizedBox(height: 47),
+                  SizedBox(height: 45),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
