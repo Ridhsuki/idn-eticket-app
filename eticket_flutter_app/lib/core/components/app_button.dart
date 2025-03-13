@@ -7,11 +7,12 @@ class AppButton extends StatelessWidget {
     required this.title,
     required this.onPressed,
     this.buttonColor,
+    this.isCircular = false
   });
 
   final String title;
   final Color? buttonColor;
-  // final
+  final bool isCircular;
   final void Function()? onPressed;
 
   @override
@@ -23,7 +24,7 @@ class AppButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: buttonColor ?? AppColor.mainColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(isCircular ? 30 : 12),
           ),
         ),
         onPressed: onPressed,

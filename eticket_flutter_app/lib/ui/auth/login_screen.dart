@@ -75,6 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             Navigator.pushReplacementNamed(context, 'main');
                           },
+                          isCircular: true,
                         ),
                       ),
                       SizedBox(height: 128),
