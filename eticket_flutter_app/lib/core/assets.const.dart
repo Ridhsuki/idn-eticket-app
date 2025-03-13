@@ -33,4 +33,9 @@ class AssetsConst {
   static const String activeQrisIcon = 'assets/icons/detailOrder/qris-1.png';
   static const String activeTunaiIcon = 'assets/icons/detailOrder/tunai-1.png';
   static const String activeTransferIcon = 'assets/icons/detailOrder/transfer-1.png';
+
+  //? Ticket Screen
+  static const String addTicket = 'assets/icons/addTicket.png';
+  static const String penIcon = 'assets/icons/pen.png';
+  static const String trashIcon = 'assets/icons/trash.png';
 }

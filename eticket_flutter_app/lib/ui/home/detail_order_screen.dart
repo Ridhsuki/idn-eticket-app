@@ -46,7 +46,7 @@ class DetailOrderScreen extends StatelessWidget {
                 var data = selectedTickets[index];
                 return Padding(
                   padding: EdgeInsets.only(
-                    bottom: index == selectedTickets.length - 1 ? 100 : 0,
+                    bottom: index == selectedTickets.length - 1 ? 200 : 0,
                   ),
                   child: Container(
                     width: double.infinity,
