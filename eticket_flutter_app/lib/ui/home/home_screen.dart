@@ -4,9 +4,14 @@ import 'package:eticket_flutter_app/core/components/app_button.dart';
 import 'package:eticket_flutter_app/data/model/ticket_model.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final List<TicketModel> ticketDummmy = [
     TicketModel(
       title: 'Tiket Masuk Dewasa',
@@ -30,6 +35,17 @@ class HomeScreen extends StatelessWidget {
       price: 200000,
     ),
   ];
+
+  int totalAmount = 0;
+  void updateTotalAmount() {
+    int total = 0;
+    for (var ticket in ticketDummmy) {
+      total += ticket.totalPrice;
+    }
+    setState(() {
+      totalAmount = total;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,12 +79,96 @@ class HomeScreen extends StatelessWidget {
                   padding: EdgeInsets.only(
                     bottom: index == ticketDummmy.length - 1 ? 100 : 0,
                   ),
-                  child: ItemCardHome(
-                    title: data.title,
-                    subtitle: data.subtitle,
-                    price: data.price,
-                    count: data.count,
-                    totalPrice: data.totalPrice,
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: AppColor.grey),
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 24,
+                        horizontal: 25,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(data.title, style: TextStyle(fontSize: 15)),
+                              Text(
+                                data.subtitle,
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: AppColor.greytext,
+                                ),
+                              ),
+                              SizedBox(height: 13),
+                              Text(
+                                'Rp ${data.price}',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  IconButton(
+                                    icon: Image.asset(AssetsConst.minusIcon),
+                                    onPressed: () {
+                                      setState(() {
+                                        if (data.count == 0) {
+                                          return;
+                                        } else {
+                                          data.count--;
+                                          data.totalPrice =
+                                              data.price * data.count;
+                                          updateTotalAmount();
+                                        }
+                                      });
+                                    },
+                                  ),
+                                  Text(
+                                    data.count.toString(),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  IconButton(
+                                    icon: Image.asset(AssetsConst.plusIcon),
+                                    onPressed: () {
+                                      setState(() {
+                                        data.count++;
+                                        data.totalPrice =
+                                            data.price * data.count;
+                                        updateTotalAmount();
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                'Rp ${data.totalPrice}',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 );
               },
@@ -94,7 +194,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Rp. 999999999++',
+                          'Rp. $totalAmount',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -112,104 +212,6 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-// ignore: must_be_immutable
-class ItemCardHome extends StatefulWidget {
-  ItemCardHome({
-    super.key,
-    required this.title,
-    required this.subtitle,
-    required this.price,
-    required this.count,
-    required this.totalPrice,
-  });
-  final String title;
-  final String subtitle;
-  final int price;
-  int count;
-  int totalPrice;
-
-  @override
-  State<ItemCardHome> createState() => _ItemCardHomeState();
-}
-
-class _ItemCardHomeState extends State<ItemCardHome> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: AppColor.grey),
-        borderRadius: BorderRadius.all(Radius.circular(16)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 25),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(widget.title, style: TextStyle(fontSize: 15)),
-                Text(
-                  widget.subtitle,
-                  style: TextStyle(fontSize: 11, color: AppColor.greytext),
-                ),
-                SizedBox(height: 13),
-                Text(
-                  'Rp ${widget.price}',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    IconButton(
-                      icon: Image.asset(AssetsConst.minusIcon),
-                      onPressed: () {
-                        setState(() {
-                          if (widget.count == 0) {
-                            return;
-                          } else {
-                            widget.count--;
-                          }
-                        });
-                      },
-                    ),
-                    Text(
-                      widget.count.toString(),
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
-                    ),
-                    IconButton(
-                      icon: Image.asset(AssetsConst.plusIcon),
-                      onPressed: () {
-                        setState(() {
-                          widget.count++;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                Text(
-                  'Rp ${widget.totalPrice = widget.price * widget.count}',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                ),
-              ],
             ),
           ],
         ),
