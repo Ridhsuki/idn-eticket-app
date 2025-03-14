@@ -13,6 +13,8 @@ class TicketScreen extends StatefulWidget {
 class _TicketScreenState extends State<TicketScreen> {
   final ticketNameControler = TextEditingController();
   final priceController = TextEditingController();
+  final ticketEditControler = TextEditingController();
+  final priceEditController = TextEditingController();
   String kategoriValue = '';
   String kriteriaValue = '';
 
@@ -35,8 +37,8 @@ class _TicketScreenState extends State<TicketScreen> {
         actions: [
           IconButton(
             icon: Image.asset(AssetsConst.addTicket),
-            onPressed: () {
-              showDialog(
+            onPressed: () async {
+              await showDialog(
                 context: context,
                 builder: (context) {
                   return Dialog(
@@ -270,8 +272,12 @@ class _TicketScreenState extends State<TicketScreen> {
                               SizedBox(width: 15),
                               IconButton(
                                 icon: Image.asset(AssetsConst.penIcon),
-                                onPressed: () {
-                                  showDialog(
+                                onPressed: () async {
+                                  ticketEditControler.text =
+                                      dataTicket[index]['ticket_name'];
+                                  priceEditController.text =
+                                      dataTicket[index]['price'];
+                                  await showDialog(
                                     context: context,
                                     builder: (context) {
                                       return Dialog(
@@ -289,7 +295,7 @@ class _TicketScreenState extends State<TicketScreen> {
                                               Text('Nama'),
                                               SizedBox(height: 8),
                                               TextField(
-                                                controller: ticketNameControler,
+                                                controller: ticketEditControler,
                                                 decoration: InputDecoration(
                                                   border: OutlineInputBorder(),
                                                   hintText: 'Nama Tiket',
@@ -299,7 +305,7 @@ class _TicketScreenState extends State<TicketScreen> {
                                               Text('Harga'),
                                               SizedBox(height: 8),
                                               TextField(
-                                                controller: priceController,
+                                                controller: priceEditController,
                                                 decoration: InputDecoration(
                                                   border: OutlineInputBorder(),
                                                   hintText: 'Harga Tiket',
@@ -321,7 +327,12 @@ class _TicketScreenState extends State<TicketScreen> {
                                                   AppButton(
                                                     title: 'Simpan',
                                                     onPressed: () {
+                                                      dataTicket[index]['ticket_name'] =
+                                                          ticketEditControler;
+                                                      dataTicket[index]['price'] =
+                                                          priceEditController;
                                                       Navigator.pop(context);
+                                                      setState(() {});
                                                     },
                                                   ),
                                                 ],
