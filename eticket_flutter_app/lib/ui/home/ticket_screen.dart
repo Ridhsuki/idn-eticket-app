@@ -1,6 +1,7 @@
 import 'package:eticket_flutter_app/core/app_color.dart';
 import 'package:eticket_flutter_app/core/assets.const.dart';
 import 'package:eticket_flutter_app/core/components/app_button.dart';
+import 'package:eticket_flutter_app/core/utils/currency_formater.dart';
 import 'package:flutter/material.dart';
 
 class TicketScreen extends StatefulWidget {
@@ -351,7 +352,7 @@ class _TicketScreenState extends State<TicketScreen> {
                       ),
                       SizedBox(height: 13),
                       Text(
-                        'Rp ${dataTicket[index]['price']}',
+                        CurrencyFormater.formatIDR(int.parse(dataTicket[index]['price'])),
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,

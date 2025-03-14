@@ -1,6 +1,7 @@
 import 'package:eticket_flutter_app/core/app_color.dart';
 import 'package:eticket_flutter_app/core/assets.const.dart';
 import 'package:eticket_flutter_app/core/components/app_button.dart';
+import 'package:eticket_flutter_app/core/utils/currency_formater.dart';
 import 'package:eticket_flutter_app/data/model/ticket_model.dart';
 import 'package:flutter/material.dart';
 
@@ -108,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               SizedBox(height: 13),
                               Text(
-                                'Rp ${data.price}',
+                                CurrencyFormater.formatIDR(data.price),
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -195,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         Text(
-                          'Rp. $totalAmount',
+                          CurrencyFormater.formatIDR(totalAmount),
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
