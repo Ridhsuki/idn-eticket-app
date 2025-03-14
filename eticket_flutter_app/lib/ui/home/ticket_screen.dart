@@ -36,7 +36,7 @@ class TicketScreen extends StatelessWidget {
                     backgroundColor: Colors.white,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 13,
+                        horizontal: 15,
                         vertical: 24,
                       ),
                       child: Column(
@@ -125,7 +125,6 @@ class TicketScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(height: 45,)
                         ],
                       ),
                     ),
@@ -189,12 +188,128 @@ class TicketScreen extends StatelessWidget {
                             children: [
                               IconButton(
                                 icon: Image.asset(AssetsConst.trashIcon),
-                                onPressed: () {},
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return Dialog(
+                                        backgroundColor: Colors.white,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(20),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(
+                                                'Hapus Data',
+                                                style: TextStyle(
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              SizedBox(height: 12),
+                                              Text(
+                                                'Apakah anda yakin untuk menghapus data ini ?',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                              SizedBox(height: 20),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  AppButton(
+                                                    title: 'Batalkan',
+                                                    buttonColor: Colors.red,
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                  ),
+                                                  AppButton(
+                                                    title: 'Hapus',
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
                               ),
                               SizedBox(width: 15),
                               IconButton(
                                 icon: Image.asset(AssetsConst.penIcon),
-                                onPressed: () {},
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return Dialog(
+                                        backgroundColor: Colors.white,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 15,
+                                            vertical: 24,
+                                          ),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text('Nama'),
+                                              SizedBox(height: 8),
+                                              TextField(
+                                                controller: ticketNameControler,
+                                                decoration: InputDecoration(
+                                                  border: OutlineInputBorder(),
+                                                  hintText: 'Nama Tiket',
+                                                ),
+                                              ),
+                                              SizedBox(height: 8),
+                                              Text('Harga'),
+                                              SizedBox(height: 8),
+                                              TextField(
+                                                controller: priceController,
+                                                decoration: InputDecoration(
+                                                  border: OutlineInputBorder(),
+                                                  hintText: 'Harga Tiket',
+                                                ),
+                                              ),
+                                              SizedBox(height: 40),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  AppButton(
+                                                    title: 'Batalkan',
+                                                    buttonColor: Colors.red,
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                  ),
+                                                  AppButton(
+                                                    title: 'Simpan',
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
                               ),
                             ],
                           ),
