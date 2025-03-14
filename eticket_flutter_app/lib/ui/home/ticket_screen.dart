@@ -3,15 +3,22 @@ import 'package:eticket_flutter_app/core/assets.const.dart';
 import 'package:eticket_flutter_app/core/components/app_button.dart';
 import 'package:flutter/material.dart';
 
-class TicketScreen extends StatelessWidget {
+class TicketScreen extends StatefulWidget {
   const TicketScreen({super.key});
 
   @override
+  State<TicketScreen> createState() => _TicketScreenState();
+}
+
+class _TicketScreenState extends State<TicketScreen> {
+  final ticketNameControler = TextEditingController();
+  final priceController = TextEditingController();
+  String kategoriValue = '';
+  String kriteriaValue = '';
+
+  List<Map<String, dynamic>> dataTicket = [];
+  @override
   Widget build(BuildContext context) {
-    final ticketNameControler = TextEditingController();
-    final priceController = TextEditingController();
-    String kategoriValue = '';
-    String kriteriaValue = '';
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -120,7 +127,18 @@ class TicketScreen extends StatelessWidget {
                               AppButton(
                                 title: 'Simpan',
                                 onPressed: () {
+                                  dataTicket.add({
+                                    'ticket_name': ticketNameControler.text,
+                                    'price': priceController.text,
+                                    'category': kategoriValue,
+                                    'kriteria': kriteriaValue,
+                                  });
+                                  ticketNameControler.clear();
+                                  priceController.clear();
+                                  kategoriValue = '';
+                                  kriteriaValue = '';
                                   Navigator.pop(context);
+                                  setState(() {});
                                 },
                               ),
                             ],
@@ -139,7 +157,7 @@ class TicketScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 24),
         child: ListView.separated(
           shrinkWrap: true,
-          itemCount: 2,
+          itemCount: dataTicket.length,
           separatorBuilder: (context, index) {
             return SizedBox(height: 20);
           },
@@ -171,11 +189,11 @@ class TicketScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Tiket Masuk Dewasa',
+                                dataTicket[index]['ticket_name'],
                                 style: TextStyle(fontSize: 15),
                               ),
                               Text(
-                                'Nusantara',
+                                dataTicket[index]['category'],
                                 style: TextStyle(
                                   fontSize: 11,
                                   color: AppColor.greytext,
@@ -231,6 +249,11 @@ class TicketScreen extends StatelessWidget {
                                                   AppButton(
                                                     title: 'Hapus',
                                                     onPressed: () {
+                                                      dataTicket.removeAt(
+                                                        index,
+                                                      );
+                                                      // print(dataTicket);
+                                                      setState(() {});
                                                       Navigator.pop(context);
                                                     },
                                                   ),
@@ -317,7 +340,7 @@ class TicketScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 13),
                       Text(
-                        'Rp 50000',
+                        'Rp ${dataTicket[index]['price']}',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
