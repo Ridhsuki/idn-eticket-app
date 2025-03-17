@@ -4,6 +4,7 @@ import 'package:eticket_flutter_app/ui/home/detail_order_screen.dart';
 import 'package:eticket_flutter_app/ui/home/main_screen.dart';
 import 'package:eticket_flutter_app/ui/home/payment_receipt_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,6 +17,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        textTheme: GoogleFonts.outfitTextTheme(Theme.of(context).textTheme),
+      ),
       initialRoute: '/',
       routes: {
         '/': (context) => SplashScreen(),
